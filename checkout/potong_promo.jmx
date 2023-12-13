@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.2">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.ramp_time"></stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="-503505663">checkoutId</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="681405977">
+              <stringProp name="118040362">${__UUID()}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">true</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SHIPPING-API" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;provider&quot;:&quot;jne&quot;,&quot;action&quot;:&quot;check_rates&quot;,&quot;description&quot;:&quot;check_rates from website&quot;,&quot;merchant_id&quot;:&quot;025dcdb8-1b50-47cc-8fc9-60ff696b072a&quot;,&quot;total_price&quot;:14999,&quot;total_weight&quot;:0.1,&quot;total_quantity&quot;:1,&quot;total_volume&quot;:1,&quot;is_insurance&quot;:false,&quot;origin_latitude&quot;:0,&quot;origin_longitude&quot;:0,&quot;destination_latitude&quot;:-6.5009046,&quot;destination_longitude&quot;:106.7996328,&quot;sender_email&quot;:&quot;prodigofootwear@gmail.com&quot;,&quot;recipient_email&quot;:&quot;avicienna.ulhaq@gmail.com&quot;,&quot;warehouse_id&quot;:287,&quot;buyer_id&quot;:&quot;71cf2f07-63df-46f3-ae6a-deb19efe3e3b&quot;,&quot;shipping_address_id&quot;:275605,&quot;checkout_id&quot;:&quot;${checkoutId}&quot;,&quot;shipping_method_id&quot;:2,&quot;is_shipping_reserved&quot;:true,&quot;origin&quot;:&quot;40614&quot;,&quot;destination&quot;:&quot;16913&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">api.aladinmall.id</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/functions/v1/shipping-api?has_sirclo=false&amp;has_forstok=false</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">false</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+            <boolProp name="HTTPSampler.md5">false</boolProp>
+            <intProp name="HTTPSampler.ipSourceType">0</intProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-04T16:16:12.391359</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="authority" elementType="Header">
+                  <stringProp name="Header.name">authority</stringProp>
+                  <stringProp name="Header.value">api.aladinmall.id</stringProp>
+                </elementProp>
+                <elementProp name="accept" elementType="Header">
+                  <stringProp name="Header.name">accept</stringProp>
+                  <stringProp name="Header.value">*/*</stringProp>
+                </elementProp>
+                <elementProp name="accept-language" elementType="Header">
+                  <stringProp name="Header.name">accept-language</stringProp>
+                  <stringProp name="Header.value">en-US,en;q=0.9,id;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="apikey" elementType="Header">
+                  <stringProp name="Header.name">apikey</stringProp>
+                  <stringProp name="Header.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAiYW5vbiIsCiAgICAiaXNzIjogInN1cGFiYXNlLWRlbW8iLAogICAgImlhdCI6IDE2ODgwNTgwMDAsCiAgICAiZXhwIjogMTg0NTkxMDgwMAp9.vkbmlkY9DdigDM8xF0j9PxO2FKSQGxOPi8gzYgVz83Y</stringProp>
+                </elementProp>
+                <elementProp name="authorization" elementType="Header">
+                  <stringProp name="Header.name">authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzAxNjg0MjMwLCJzdWIiOiI3MWNmMmYwNy02M2RmLTQ2ZjMtYWU2YS1kZWIxOWVmZTNlM2IiLCJlbWFpbCI6ImF2aWNpZW5uYS51bGhhcUBnbWFpbC5jb20iLCJwaG9uZSI6IjYyODc3NzA1ODY1OTQiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSmpBdWdmdTRfc0phVXVpTURMZTY1VXlSMDU2VElNRWp5QnoxdjlCODhxM0lJPXM5Ni1jIiwiY3VzdG9tZXIiOnRydWUsImVtYWlsIjoiYXZpY2llbm5hLnVsaGFxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmdWxsX25hbWUiOiJBdmljaWVubmEgVWxoYXEiLCJpc3MiOiJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS91c2VyaW5mby92Mi9tZSIsIm5hbWUiOiJBdmljaWVubmEgVWxoYXEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSmpBdWdmdTRfc0phVXVpTURMZTY1VXlSMDU2VElNRWp5QnoxdjlCODhxM0lJPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMTU4NTY3OTEzMTkwNjk3MTgyNzUiLCJzdWIiOiIxMTU4NTY3OTEzMTkwNjk3MTgyNzUifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJvYXV0aCIsInRpbWVzdGFtcCI6MTY5OTQxNjc5Mn1dLCJzZXNzaW9uX2lkIjoiOWYxNmVjNTItMWRlYy00ZDlhLTg3ZDEtYTc5MWE2ZmU5NzdhIn0.bZz5Tj4qUdHFb02yd8UpYswtuEa0uFCaJWaYjPi2w-w</stringProp>
+                </elementProp>
+                <elementProp name="content-type" elementType="Header">
+                  <stringProp name="Header.name">content-type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="origin" elementType="Header">
+                  <stringProp name="Header.name">origin</stringProp>
+                  <stringProp name="Header.value">https://aladinmall.id</stringProp>
+                </elementProp>
+                <elementProp name="referer" elementType="Header">
+                  <stringProp name="Header.name">referer</stringProp>
+                  <stringProp name="Header.value">https://aladinmall.id/</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua</stringProp>
+                  <stringProp name="Header.value">&quot;Microsoft Edge&quot;;v=&quot;119&quot;, &quot;Chromium&quot;;v=&quot;119&quot;, &quot;Not?A_Brand&quot;;v=&quot;24&quot;</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                  <stringProp name="Header.value">?0</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-platform" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                  <stringProp name="Header.value">&quot;macOS&quot;</stringProp>
+                </elementProp>
+                <elementProp name="sec-fetch-dest" elementType="Header">
+                  <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                  <stringProp name="Header.value">empty</stringProp>
+                </elementProp>
+                <elementProp name="sec-fetch-mode" elementType="Header">
+                  <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                  <stringProp name="Header.value">cors</stringProp>
+                </elementProp>
+                <elementProp name="sec-fetch-site" elementType="Header">
+                  <stringProp name="Header.name">sec-fetch-site</stringProp>
+                  <stringProp name="Header.value">same-site</stringProp>
+                </elementProp>
+                <elementProp name="user-agent" elementType="Header">
+                  <stringProp name="Header.name">user-agent</stringProp>
+                  <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0</stringProp>
+                </elementProp>
+                <elementProp name="x-client-info" elementType="Header">
+                  <stringProp name="Header.name">x-client-info</stringProp>
+                  <stringProp name="Header.value">supabase-js/2.24.0</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate</stringProp>
+                </elementProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">Created from cURL on 2023-12-04T16:16:12.391542</stringProp>
+            </HeaderManager>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="checkout" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">[&#xd;
+  {&#xd;
+    &quot;selected_shipping_provider_id&quot;: 4,&#xd;
+    &quot;selected_shipping_method_id&quot;: 3,&#xd;
+    &quot;selected_shipping_rates&quot;: {&#xd;
+      &quot;provider&quot;: &quot;sap&quot;,&#xd;
+      &quot;action&quot;: &quot;check_rates&quot;,&#xd;
+      &quot;description&quot;: &quot;check_rates from website&quot;,&#xd;
+      &quot;merchant_id&quot;: &quot;641ba284-2134-11ee-a951-026b81ae3e50&quot;,&#xd;
+      &quot;total_price&quot;: 109810,&#xd;
+      &quot;total_weight&quot;: 0.25,&#xd;
+      &quot;total_quantity&quot;: 1,&#xd;
+      &quot;total_volume&quot;: 500,&#xd;
+      &quot;is_insurance&quot;: false,&#xd;
+      &quot;origin_latitude&quot;: -6.2372847,&#xd;
+      &quot;origin_longitude&quot;: 106.8758675,&#xd;
+      &quot;destination_latitude&quot;: -6.1841202,&#xd;
+      &quot;destination_longitude&quot;: 106.8317401,&#xd;
+      &quot;sender_email&quot;: &quot;indokopiwh@gmail.com&quot;,&#xd;
+      &quot;recipient_email&quot;: &quot;uzumymw@yopmail.com&quot;,&#xd;
+      &quot;warehouse_id&quot;: 9364,&#xd;
+      &quot;buyer_id&quot;: &quot;b10709c5-4e3c-4e38-9647-9f08bff527bd&quot;,&#xd;
+      &quot;shipping_address_id&quot;: 2632,&#xd;
+      &quot;checkout_id&quot;: &quot;${checkoutId}&quot;,&#xd;
+      &quot;shipping_method_id&quot;: 3,&#xd;
+      &quot;is_shipping_reserved&quot;: true,&#xd;
+      &quot;origin&quot;: &quot;13340&quot;,&#xd;
+      &quot;destination&quot;: &quot;10350&quot;&#xd;
+    },&#xd;
+    &quot;merchant_id&quot;: &quot;641ba284-2134-11ee-a951-026b81ae3e50&quot;,&#xd;
+    &quot;payment_provider_id&quot;: 1,&#xd;
+    &quot;insurance_fee&quot;: null,&#xd;
+    &quot;buyer_account_id&quot;: &quot;b10709c5-4e3c-4e38-9647-9f08bff527bd&quot;,&#xd;
+    &quot;shipping_address_id&quot;: 2632,&#xd;
+    &quot;shipping_method_id&quot;: 3,&#xd;
+    &quot;checkout_id&quot;: &quot;${checkoutId}&quot;,&#xd;
+    &quot;payment_hash&quot;: &quot;&quot;,&#xd;
+    &quot;payment_token&quot;: &quot;&quot;,&#xd;
+    &quot;payment_bin&quot;: &quot;&quot;,&#xd;
+    &quot;warehouse_id&quot;: null,&#xd;
+    &quot;warehouse_code&quot;: null,&#xd;
+    &quot;order_lists&quot;: [&#xd;
+      {&#xd;
+        &quot;product_variant_id&quot;: &quot;7de2d50c-5d07-11ee-9bfd-026b81ae3e50&quot;,&#xd;
+        &quot;quantity&quot;: 1,&#xd;
+        &quot;amount&quot;: 109810,&#xd;
+        &quot;notes&quot;: &quot;&quot;,&#xd;
+        &quot;sku&quot;: &quot;6223-srntangan&quot;,&#xd;
+        &quot;product_metadata&quot;: {&#xd;
+          &quot;product&quot;: {&#xd;
+            &quot;images&quot;: [&#xd;
+              &quot;https://am-assets-stg.aladinmall.id/stub/seller/sarungtangan.jpeg1695799617109&quot;&#xd;
+            ],&#xd;
+            &quot;id&quot;: 420619,&#xd;
+            &quot;merchant&quot;: {&#xd;
+              &quot;id&quot;: &quot;641ba284-2134-11ee-a951-026b81ae3e50&quot;,&#xd;
+              &quot;name&quot;: &quot;IndoKopi&quot;,&#xd;
+              &quot;image&quot;: &quot;https://api-staging.aladinmall.id/storage/v1/object/public/seller/kopi.jpg2491&quot;,&#xd;
+              &quot;location&quot;: &quot;Jl. Cipinang store&quot;&#xd;
+            },&#xd;
+            &quot;sku&quot;: &quot;6223-srntangan&quot;,&#xd;
+            &quot;category_id&quot;: 42,&#xd;
+            &quot;description&quot;: &quot;Bisa digunakan ketika panas&quot;,&#xd;
+            &quot;name&quot;: &quot;Sarung Tangan Motor Mini&quot;,&#xd;
+            &quot;is_text&quot;: false,&#xd;
+            &quot;weight&quot;: 0.25&#xd;
+          },&#xd;
+          &quot;id&quot;: &quot;545af08a-6d7d-11ee-ade7-02e48357c9a4&quot;,&#xd;
+          &quot;is_primary_variant&quot;: true,&#xd;
+          &quot;attribute_set_variants&quot;: [&#xd;
+            &#xd;
+          ]&#xd;
+        }&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;promo_ids&quot;: [&#xd;
+      &quot;6ba72870-9263-11ee-a5b3-06fbd5e24e7a&quot;&#xd;
+    ],&#xd;
+    &quot;platform&quot;: &quot;web&quot;&#xd;
+  }&#xd;
+]</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">api-staging.aladinmall.id</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/functions/v1/checkout</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">false</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+            <boolProp name="HTTPSampler.md5">false</boolProp>
+            <intProp name="HTTPSampler.ipSourceType">0</intProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-04T16:22:22.832182</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="authority" elementType="Header">
+                  <stringProp name="Header.name">authority</stringProp>
+                  <stringProp name="Header.value">api-staging.aladinmall.id</stringProp>
+                </elementProp>
+                <elementProp name="accept" elementType="Header">
+                  <stringProp name="Header.name">accept</stringProp>
+                  <stringProp name="Header.value">*/*</stringProp>
+                </elementProp>
+                <elementProp name="accept-language" elementType="Header">
+                  <stringProp name="Header.name">accept-language</stringProp>
+                  <stringProp name="Header.value">en-US,en;q=0.9,id;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="apikey" elementType="Header">
+                  <stringProp name="Header.name">apikey</stringProp>
+                  <stringProp name="Header.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAiYW5vbiIsCiAgICAiaXNzIjogInN1cGFiYXNlLWRlbW8iLAogICAgImlhdCI6IDE2ODgwNTgwMDAsCiAgICAiZXhwIjogMTg0NTkxMDgwMAp9.hptz_Eq8FTFKJas6qVjKXRAwgF0GM44L6WWverq-c0g</stringProp>
+                </elementProp>
+                <elementProp name="authorization" elementType="Header">
+                  <stringProp name="Header.name">authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzAxNjg1MjIwLCJzdWIiOiJiMTA3MDljNS00ZTNjLTRlMzgtOTY0Ny05ZjA4YmZmNTI3YmQiLCJlbWFpbCI6InV6dW15bXdAeW9wbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTcwMTY4MTYyMH1dLCJzZXNzaW9uX2lkIjoiODk2MTE2NTYtNzgxNS00ZDMzLTk0YTgtMjlmNzBjMmFjYWYyIn0.1g5Aqtd2VKYu305Wu-gqzi76t4vddXMUcEoOf8GHvwY</stringProp>
+                </elementProp>
+                <elementProp name="content-type" elementType="Header">
+                  <stringProp name="Header.name">content-type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="origin" elementType="Header">
+                  <stringProp name="Header.name">origin</stringProp>
+                  <stringProp name="Header.value">https://ui-frontstore-stg.aladinmall.id</stringProp>
+                </elementProp>
+                <elementProp name="referer" elementType="Header">
+                  <stringProp name="Header.name">referer</stringProp>
+                  <stringProp name="Header.value">https://ui-frontstore-stg.aladinmall.id/</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua</stringProp>
+                  <stringProp name="Header.value">&quot;Microsoft Edge&quot;;v=&quot;119&quot;, &quot;Chromium&quot;;v=&quot;119&quot;, &quot;Not?A_Brand&quot;;v=&quot;24&quot;</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                  <stringProp name="Header.value">?0</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-platform" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                  <stringProp name="Header.value">&quot;macOS&quot;</stringProp>
+                </elementProp>
+                <elementProp name="sec-fetch-dest" elementType="Header">
+                  <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                  <stringProp name="Header.value">empty</stringProp>
+                </elementProp>
+                <elementProp name="sec-fetch-mode" elementType="Header">
+                  <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                  <stringProp name="Header.value">cors</stringProp>
+                </elementProp>
+                <elementProp name="sec-fetch-site" elementType="Header">
+                  <stringProp name="Header.name">sec-fetch-site</stringProp>
+                  <stringProp name="Header.value">same-site</stringProp>
+                </elementProp>
+                <elementProp name="user-agent" elementType="Header">
+                  <stringProp name="Header.name">user-agent</stringProp>
+                  <stringProp name="Header.value">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0</stringProp>
+                </elementProp>
+                <elementProp name="x-client-info" elementType="Header">
+                  <stringProp name="Header.name">x-client-info</stringProp>
+                  <stringProp name="Header.value">supabase-js/2.24.0</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate</stringProp>
+                </elementProp>
+              </collectionProp>
+              <stringProp name="TestPlan.comments">Created from cURL on 2023-12-04T16:22:22.83236</stringProp>
+            </HeaderManager>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <SyncTimer guiclass="TestBeanGUI" testclass="SyncTimer" testname="Synchronizing Timer" enabled="true">
+            <intProp name="groupSize">0</intProp>
+            <longProp name="timeoutInMs">0</longProp>
+          </SyncTimer>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
